@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "intelliSenseMode": "clang-x64",
+            "includePath": [
+                "${workspaceRoot}",
+                "C:\\ti\\TivaWare_C_Series-2.2.0.295"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "configurationProvider": "go2sh.cmake-integration"
+        }
+    ],
+    "version": 4
+}
