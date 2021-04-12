@@ -37,13 +37,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${TIVAWARE_PATH})
 # Platform specific flags
 target_compile_options(${PROJECT_NAME} PRIVATE 
  -mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections -MD -Wall -pedantic
+ #-mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -ffunction-sections -fdata-sections -MD -Wall -pedantic
+ #-mthumb -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=softfp -ffunction-sections -fdata-sections -MD -Wall -pedantic -fno-exceptions -fno-rtti
 )
 
 # Platform specific definitions
 target_compile_definitions(${PROJECT_NAME} PRIVATE
  -DPART_TM4C123GH6PM
- -DTARGET_IS_TM4C123_RA1
- -Dgcc
+ #-DTARGET_IS_TM4C123_RA1
+ #-Dgcc
 )
 
 # Find the compiler specific libraries
@@ -72,11 +74,13 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
   ${LIBSTDCPP_PATH}
 )
 
-set(FLASH_EXECUTABLE "lm4flash")
+# set(FLASH_EXECUTABLE "lm4flash")
+set(FLASH_EXECUTABLE "/mnt/c/ti/LM\ Flash\ Programmer/LMFlash.exe")
 ADD_CUSTOM_TARGET("flash"
   # DEPENDS ${CMAKE_PROJECT_NAME}.axf 
   #COMMAND ${CMAKE_OBJCOPY} -O binary ${CMAKE_PROJECT_NAME}.axf ${CMAKE_PROJECT_NAME}.bin 
-  COMMAND ${FLASH_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.bin
+  #COMMAND ${FLASH_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.bin
+  COMMAND ${FLASH_EXECUTABLE} ${PROJECT_NAME}.bin
 )
 
 # Objcopy to create a binary file
